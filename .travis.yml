@@ -1,10 +1,14 @@
 language: python
 python:
-  - '3.3'
-  - '3.4'
-  - '3.5'
+- '3.3'
+- '3.4'
+- '3.5'
 install:
-  - pip install -r requirements.txt
-  - pip install .
+- pip install -r requirements.txt
+- pip install .
 script:
-  - py.test
+- py.test
+env:
+  global:
+  - secure: XlUx5mPpcox9cxD8eu+MBt9tnEmhyP8vhbOZF6tSSrXQM9+pmey81wc2gmaShjZwY46KgS7GlyqkLeuu5F46Z3c/AQLnXzinVCRySSAEo1W4Z0xPMu1ladknyDms2X7qxObofzv3WcjsS9mAxFVQv+EnE2anfnyeO4ay2Sm9k1EcMpKUHayrmwpnaNEQa7TMCiEt3/Y3bCsYVK4oxud0qsUXEd48VNw2uOmiaIf9kH44tHaH1H0g8mx3wxf90YhDxsb+9HFjk7idkSjMT0IvDVM4wNbxR5dl5y9TlSBVdnTZ8mGYIO4axERfLUPx9Jz4raHhlS0RR29a/BxHzoaVY9d0ZUU+Pcko5k+ZCIYacIcMaKDfEAoDSrZ+BcUAesnAAWfkOjf9vs3twTKbPI9rvvXsUqn5Oy1817ZgMKz6s103qqOGuC3If6snx98FM/6EsjGTImNgYSR06JAAzD6BOIDOHos53NAOE+JiRAOSM2vOG8Sb6utj5kDj9bnz4oHlvX8cracsv76KGAcuVpG5L7mo5EzvgkqzckqZbWgxTGvxTxNolSRoYaC8bjkrNF8J9UC2yUsaDUwelzYV6MiAiKawbv8kedztDP61E06yI8oMEZplDWp48Rl8q4xQodHF6yC9jISaLr/JUSN34OMjI6Q3QXBMjfaBgmFKJFReAwU=
+  - secure: XPPHiU65viua/FDgCSygVx4qQZzN+9D3gb09xirbRd2Y+p6EFhgtcDOFKBrQbuSS8HyT1eh85CZRa12YF76LdXZbgfTVuuFwKpP+q2c164L3s1wX4MM0AbxTtGhBbbm6zrcaOiAFUY+0IPkN6WCjbL+pO3diYZ92OuWSodljzNS9ZrWnjiwsx4xANaj/dnvArLUNW1IImk5ytuUvx2e3jUrN6yRK9+Ht6qHTwGwgXyL4cGuwblSl9lL6Yha0N3OdaYqIEHxWudgqQozfjGt+qX4Dcoxr+xDHu7Rn7lwu0TNQlT+mngo64ksSRZjPg3Z+LRoxk3NjlpDaKybDHwEAl1wRDT0NRLhbUzzXEdDHWPiBBVYRmuZq0+WlRe6WUT4yxUCnGwI6g3KF6ejgvgnYuifaA5Q0svirF2RqQAGgWXGzh5m5XNOhvr1TVp0w3jpANi3UrNgclFvF5tX7I3z+sdzwVyeiVPCAPWLklTUjspXGJz0c+23Zhk1kcWQ1hAm+OhN7/oFYt8h2JQLUZ+w1pgUNmA2e5tV0QdtyVhNaEi0FUoIJfa654hxAkuoynXGHR30dYYEE9P0ocVxicUfA3k9E+vTpFZPywtAM9o+CK4X0hF/KsAMkTzlLzc9V1yC05QCOxabKta2mF6rED9wFXLQQtguUnt4ZdS28sb8xpMo=
