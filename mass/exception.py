@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """This module defines the exceptions of MASS.
@@ -17,6 +17,6 @@ class TaskError(Exception):
     """
 
     def __init__(self, reason, details=None):
-        super().__init__()
+        super(TaskError, self).__init__()
         self.reason = reason
         self.details = details

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """SWF decider to poll SWF workflow execution history and report processing
@@ -15,7 +15,7 @@ import boto3
 from mass.scheduler.swf.decisions import Decisions
 
 
-class Decider:
+class Decider(object):
 
     def __init__(self, domain, region):
         self.domain = domain

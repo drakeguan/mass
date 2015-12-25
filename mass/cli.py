@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # vim: set hls is ai et sw=4 sts=4 ts=8 nu ft=python:
 

@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """This module define base class of mass worker.
 """
 
 # built-in modules
+from __future__ import print_function
 from functools import wraps
 import sys
 import traceback
@@ -13,7 +14,7 @@ import traceback
 from mass.exception import TaskError
 
 
-class BaseWorker:
+class BaseWorker(object):
     """Base class of mass worker.
     """
 

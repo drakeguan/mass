@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """Helper class for creating decision responses.
@@ -6,7 +6,7 @@ Copied from boto.swf.layer1_decisions.
 """
 
 
-class Decisions:
+class Decisions(object):
 
     def __init__(self):
         self._data = []

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # built-in modules
+from __future__ import print_function
 from datetime import timedelta
 from multiprocessing import Process
 import json
