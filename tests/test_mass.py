@@ -24,7 +24,7 @@ from mass.scheduler.swf import SWFWorker
 import mass
 
 
-JOB_TITLE = str(int((time.time() + 300) // 1000))
+JOB_TITLE = str(int(time.time() % 1000))
 
 input_handler = InputHandler()
 
