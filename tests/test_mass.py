@@ -32,7 +32,7 @@ input_handler = InputHandler()
 @input_handler.saver('local')
 def save_to_local(data, job_title, task_title):
     file_path = '/tmp/Job_%s_Task_%s_%d.job' % (job_title, task_title, time.time())
-    #print('save_to_local', file_path)
+    print('save_to_local', file_path)
     with open(file_path, 'w') as f:
         f.write(json.dumps(data))
     return file_path
@@ -40,7 +40,7 @@ def save_to_local(data, job_title, task_title):
 
 @input_handler.loader('local')
 def load_from_local(file_path):
-    #print('load_from_local', file_path)
+    print('load_from_local', file_path)
     with open(file_path) as fp:
         return json.load(fp)
 
