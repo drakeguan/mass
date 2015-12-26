@@ -7,6 +7,7 @@ from datetime import timedelta
 from multiprocessing import Process
 import json
 import os
+import random
 import subprocess
 import time
 import uuid
@@ -23,6 +24,8 @@ from mass.scheduler.swf import config
 from mass.scheduler.swf import SWFWorker
 import mass
 
+
+JOB_TITLE = 'Job_' + str(random.randint(1, 1000))
 
 input_handler = InputHandler()
 
@@ -131,7 +134,7 @@ def get_close_status(workflow_id, run_id):
 
 
 def test_start_job(worker, submit_job):
-    with Job('Job') as job:
+    with Job(JOB_TITLE) as job:
         with Task('Task'):
             Action(msg='Action here at $(date).', _role='echo')
 
@@ -144,7 +147,7 @@ def test_start_job(worker, submit_job):
 
 
 def test_unexpected_keywork_arguments_of_action(worker, submit_job):
-    with Job('Job') as job:
+    with Job(JOB_TITLE) as job:
         with Task('Task'):
             Action(wrong_input='Action here at $(date).', _role='echo')
 
@@ -162,7 +165,7 @@ def test_unexpected_keywork_arguments_of_action(worker, submit_job):
 
 
 def test_parallel_tasks(worker, submit_job):
-    with Job('Job', parallel=True) as job:
+    with Job(JOB_TITLE, parallel=True) as job:
         with Task('Task1'):
             Action(cmd='sleep 10', _role='shell')
         with Task('Task2'):
@@ -201,7 +204,7 @@ def test_parallel_tasks(worker, submit_job):
 
 
 def test_handle_task_error(worker, submit_job):
-    with Job('Job') as job:
+    with Job(JOB_TITLE) as job:
         with Task(title='Task'):
             Action(cmd='fakecmd', _role='shell')
             Action(cmd='echo "an error occurred"', _role='shell', _whenerror=True)
