@@ -8,6 +8,7 @@ from multiprocessing import Process
 import json
 import os
 import subprocess
+import sys
 import time
 import uuid
 
@@ -23,6 +24,9 @@ from mass.scheduler.swf import config
 from mass.scheduler.swf import SWFWorker
 import mass
 
+
+config.DECISION_TASK_LIST = 'mass.' + str(sys.version_info[0]) + '.' + str(sys.version_info[1])
+config.ACTIVITY_TASK_LIST = 'mass.' + str(sys.version_info[0]) + '.' + str(sys.version_info[1])
 
 JOB_TITLE = str(int(time.time() % 1000))
 
