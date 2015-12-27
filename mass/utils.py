@@ -6,6 +6,7 @@
 
 # built-in modules
 import json
+import uuid
 
 # 3rd-party modules
 import boto3
@@ -20,10 +21,11 @@ def submit(job, protocol=None, priority=1):
     """
     client = boto3.client('swf', region_name=config.REGION)
     handler = InputHandler(protocol)
+    workflowId = str(uuid.uuid1())
 
     res = client.start_workflow_execution(
         domain=config.DOMAIN,
-        workflowId=job.title,
+        workflowId=workflowId,
         workflowType=config.WORKFLOW_TYPE_FOR_JOB,
         taskList={'name': config.DECISION_TASK_LIST},
         taskPriority=str(priority),
@@ -39,4 +41,4 @@ def submit(job, protocol=None, priority=1):
         tagList=[job.title],
         taskStartToCloseTimeout=str(config.DECISION_TASK_START_TO_CLOSE_TIMEOUT),
         childPolicy=config.WORKFLOW_CHILD_POLICY)
-    return job.title, res['runId']
+    return workflowId, res['runId']
