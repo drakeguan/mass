@@ -6,7 +6,6 @@
 
 # built-in modules
 import json
-import uuid
 
 # 3rd-party modules
 import boto3
@@ -21,7 +20,7 @@ def submit(job, protocol=None, priority=1):
     """
     client = boto3.client('swf', region_name=config.REGION)
     handler = InputHandler(protocol)
-    workflowId = str(uuid.uuid1())
+    workflowId = str(job.title)
 
     res = client.start_workflow_execution(
         domain=config.DOMAIN,
