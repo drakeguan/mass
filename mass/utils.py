@@ -8,17 +8,25 @@
 import json
 
 # 3rd-party modules
-import boto3
+from botocore.client import Config
 
 # local modules
+from mass.exception import UnsupportedScheduler
 from mass.input_handler import InputHandler
-from mass.scheduler.swf import config
 
 
-def submit(job, protocol=None, priority=1):
+def submit(job, protocol=None, priority=1, scheduler='swf'):
     """Submit mass job to SWF with specific priority.
     """
-    client = boto3.client('swf', region_name=config.REGION)
+    if scheduler != 'swf':
+        raise UnsupportedScheduler(scheduler)
+    from mass.scheduler.swf import config
+    import boto3
+    client = boto3.client(
+        'swf',
+        region_name=config.REGION,
+        config=Config(connect_timeout=config.CONNECT_TIMEOUT,
+                      read_timeout=config.READ_TIMEOUT))
     handler = InputHandler(protocol)
     workflowId = str(job.title)
 
@@ -32,8 +40,7 @@ def submit(job, protocol=None, priority=1):
             'protocol': protocol,
             'body': handler.save(
                 data=job,
-                job_title=job.title,
-                task_title=job.title
+                genealogy=[job.title]
             )
         }),
         executionStartToCloseTimeout=str(config.WORKFLOW_EXECUTION_START_TO_CLOSE_TIMEOUT),

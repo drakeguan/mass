@@ -8,15 +8,20 @@
 import math
 
 # 3rd-party modules
-import boto3
+from botocore.client import Config
 from botocore.exceptions import ClientError
+import boto3
 
 # local modules
-from mass.workers.swf import config
+from mass.scheduler.swf import config
 
 
 def register_domain():
-    client = boto3.client('swf', region_name=config.REGION)
+    client = boto3.client(
+        'swf',
+        region_name=config.REGION,
+        config=Config(connect_timeout=config.CONNECT_TIMEOUT,
+                      read_timeout=config.READ_TIMEOUT))
 
     # register domain for Mass
     try:
@@ -32,7 +37,11 @@ def register_domain():
 
 
 def register_workflow_type():
-    client = boto3.client('swf', region_name=config.REGION)
+    client = boto3.client(
+        'swf',
+        region_name=config.REGION,
+        config=Config(connect_timeout=config.CONNECT_TIMEOUT,
+                      read_timeout=config.READ_TIMEOUT))
 
     # register workflow type for Job
     try:
@@ -70,14 +79,18 @@ def register_workflow_type():
 
 
 def register_activity_type():
-    client = boto3.client('swf', region_name=config.REGION)
+    client = boto3.client(
+        'swf',
+        region_name=config.REGION,
+        config=Config(connect_timeout=config.CONNECT_TIMEOUT,
+                      read_timeout=config.READ_TIMEOUT))
 
     # register activity type for Cmd
     try:
         res = client.register_activity_type(
             domain=config.DOMAIN,
-            name=config.ACTIVITY_TYPE_FOR_CMD['name'],
-            version=config.ACTIVITY_TYPE_FOR_CMD['version'],
+            name=config.ACTIVITY_TYPE_FOR_ACTION['name'],
+            version=config.ACTIVITY_TYPE_FOR_ACTION['version'],
             description='The SWF activity type for Cmd of Mass.',
             defaultTaskStartToCloseTimeout=str(config.ACTIVITY_TASK_START_TO_CLOSE_TIMEOUT),
             defaultTaskHeartbeatTimeout=str(config.ACTIVITY_HEARTBEAT_TIMEOUT),
